@@ -1,0 +1,19 @@
+{
+  "name": "playwright-bot",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "playwright": "^1.48.2"
+  },
+  "prettier": {
+    "singleQuote": false,
+    "semi": true,
+    "printWidth": 120,
+    "tabWidth": 2,
+    "trailingComma": "es5"
+  }
+}
