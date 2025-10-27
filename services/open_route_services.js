@@ -34,8 +34,8 @@ export async function testMatrix(profile = "driving-car") {
   // ORS expects [lon, lat]
   const body = {
     locations: [
-      [-6.2597, 53.3478], // O'Connell St (lng, lat)
-      [-6.2551, 53.3422], // Grafton St
+      [-6.262995, 53.3431247], // Sprout & Co – Exchequer Street
+      [-6.2651653, 53.3453254], // Tula Temple Bar
     ],
     metrics: ["distance"], // distance only
   };
