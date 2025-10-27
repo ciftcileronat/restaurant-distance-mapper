@@ -29,3 +29,16 @@ It automates restaurant discovery from **Deliveroo**, retrieves geospatial data 
 
 ---
 
+## 📊 Output Example
+
+### 📏 Distance Matrix File (`distance_matrix_m.csv`)
+An NxN grid of distances (in meters) between each restaurant.
+The diagonal (`0`) represents the distance from a location to itself.
+
+| place_id | ChIJaXK... | ChIJfZV... | ChIJcRZ... |
+|-----------|------------|------------|------------|
+| **ChIJaXK...** | 0 | 3615.65 | 2789.33 |
+| **ChIJfZV...** | 1594.81 | 0 | 1672.22 |
+| **ChIJcRZ...** | 2481.15 | 1894.57 | 0 |
+
+
