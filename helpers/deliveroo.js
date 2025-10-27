@@ -40,7 +40,7 @@ export async function DismissOverlays(page) {
  * Strategy for loading all names:
  *  - Repeatedly scroll near the bottom until the number of name nodes stops growing.
  */
-export async function GetRestaurantNames(page) {
+export async function getRestaurantNames(page) {
   // --- 1) Try to click the "View all … restaurants" button if it exists ---
   async function TryClickViewAll() {
     const candidates = [

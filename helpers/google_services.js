@@ -15,7 +15,7 @@ const INCLUDED_TYPE = "restaurant";
  * @param {string} api_key - your Google API key
  * @returns {Promise<Array<{ name: string, lat: number|null, lng: number|null, place_id: string|null, formatted_address: string|null }>>}
  */
-export async function ResolvePlaces(names, api_key) {
+export async function resolvePlaces(names, api_key) {
   if (!Array.isArray(names) || names.length === 0) throw new Error("Expected an array of restaurant names.");
   if (!api_key) throw new Error("Google API key is required.");
 

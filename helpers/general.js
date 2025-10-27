@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export async function UpsertDataExports(named_exports) {
+export async function upsertDataExports(named_exports) {
   const data_dir = path.resolve(__dirname, "../data");
   const file_path = path.join(data_dir, "index.js");
 
@@ -60,7 +60,7 @@ export function formatPlaces(place_array) {
   }, {});
 }
 
-export function FilterDublinPlaces(
+export function filterDublinPlaces(
   places_data,
   { dublin_center = { lat: 53.3478, lng: -6.2597 }, max_distance_km = 12 } = {}
 ) {
