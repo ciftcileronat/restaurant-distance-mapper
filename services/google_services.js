@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config({ path: "./.env" });
+
 const API_TEXT_SEARCH = "https://places.googleapis.com/v1/places:searchText";
 const API_PLACE_DETAILS = (id) => `https://places.googleapis.com/v1/places/${encodeURIComponent(id)}?languageCode=en`;
 
@@ -12,13 +15,13 @@ const INCLUDED_TYPE = "restaurant";
  * Resolve restaurant names into Google Places details (Dublin area).
  *
  * @param {string[]} names - array of restaurant names
- * @param {string} api_key - your Google API key
  * @returns {Promise<Array<{ name: string, lat: number|null, lng: number|null, place_id: string|null, formatted_address: string|null }>>}
  */
-export async function ResolvePlaces(names, api_key) {
+export async function resolvePlaces(names) {
   if (!Array.isArray(names) || names.length === 0) throw new Error("Expected an array of restaurant names.");
-  if (!api_key) throw new Error("Google API key is required.");
+  if (!process.env.GOOGLE_MAPS_API_KEY) throw new Error("Google API key is required.");
 
+  const api_key = process.env.GOOGLE_MAPS_API_KEY;
   const results = [];
 
   for (const name of names) {
