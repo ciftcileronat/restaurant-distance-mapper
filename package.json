@@ -15,5 +15,8 @@
     "printWidth": 120,
     "tabWidth": 2,
     "trailingComma": "es5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1"
   }
 }
