@@ -9,6 +9,7 @@ import {
   buildLabelsAndLocations,
   computeDistanceMatrixORS,
   saveMatrixCsv,
+  getRestaurantCoordinates,
 } from "./helpers/general.js";
 import { getRestaurantNames } from "./helpers/deliveroo.js";
 import { resolvePlaces } from "./services/google_services.js";
