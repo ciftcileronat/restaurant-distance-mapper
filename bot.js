@@ -12,7 +12,7 @@ import {
   getRestaurantCoordinates,
 } from "./helpers/general.js";
 import { getRestaurantNames } from "./helpers/deliveroo.js";
-import { resolvePlaces } from "./services/google_services.js";
+import { resolvePlaces, getPlaceDetails } from "./services/google_services.js";
 import { getORSHealth, getORSStatus, testMatrix } from "./services/open_route_services.js";
 
 async function runBot() {
@@ -49,3 +49,14 @@ async function getRestaurantDistancesMatrix() {
 
   console.log(`✅ Matrix built: ${labels.length}×${labels.length}`);
 }
+
+async function getPlaceRatingAndReviews() {
+  const { dublin_places } = await import("./data/index.js");
+
+  const place_ids = Object.keys(dublin_places);
+  const details = await getPlaceDetails(place_ids);
+
+  await upsertDataExports({ place_details: details });
+}
+
+getPlaceRatingAndReviews();
