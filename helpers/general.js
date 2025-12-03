@@ -195,3 +195,18 @@ export async function saveMatrixCsv(ids, distances, outPath = "data/exports/dist
   console.log(`✅ CSV written: ${outPath}`);
   return outPath;
 }
+
+/**
+ * This function exports an csv file containing the coordinates of the restaurants.
+ * @return {Promise<string>} - The path to the saved CSV file.
+ */
+export async function getRestaurantCoordinates() {
+  const { dublin_places } = await import("../data/index.js");
+  const coords = Object.entries(dublin_places).map(([place_id, place]) => [place_id, place.lng, place.lat]);
+  const csv = ["place_id,lng,lat", ...coords.map((row) => row.join(","))].join("\n");
+  const outPath = "data/exports/restaurant_coordinates.csv";
+  await fs.mkdir(path.dirname(outPath), { recursive: true });
+  await fs.writeFile(outPath, csv, "utf8");
+  console.log(`✅ CSV written: ${outPath}`);
+  return outPath;
+}

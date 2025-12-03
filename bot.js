@@ -9,9 +9,10 @@ import {
   buildLabelsAndLocations,
   computeDistanceMatrixORS,
   saveMatrixCsv,
+  getRestaurantCoordinates,
 } from "./helpers/general.js";
 import { getRestaurantNames } from "./helpers/deliveroo.js";
-import { resolvePlaces } from "./services/google_services.js";
+import { resolvePlaces, getPlaceDetails } from "./services/google_services.js";
 import { getORSHealth, getORSStatus, testMatrix } from "./services/open_route_services.js";
 
 async function runBot() {
@@ -48,3 +49,27 @@ async function getRestaurantDistancesMatrix() {
 
   console.log(`✅ Matrix built: ${labels.length}×${labels.length}`);
 }
+
+async function getPlaceRatingAndReviews() {
+  const { dublin_places } = await import("./data/index.js");
+
+  const place_ids = Object.keys(dublin_places);
+  const details = await getPlaceDetails(place_ids);
+
+  await upsertDataExports({ place_details: details });
+}
+
+import fs from "fs";
+import { place_details } from "./data/index.js";
+
+function export_place_details_to_csv(filepath = "data/exports/place_details.csv") {
+  const header = "place_id,user_ratings_total,rating";
+  const rows = place_details.map((p) => `${p.place_id},${p.user_ratings_total ?? ""},${p.rating ?? ""}`);
+
+  const csv_content = [header, ...rows].join("\n");
+
+  fs.writeFileSync(filepath, csv_content, "utf8");
+  console.log(`✅ CSV exported to ${filepath}`);
+}
+
+export_place_details_to_csv();
