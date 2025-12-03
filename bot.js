@@ -59,4 +59,17 @@ async function getPlaceRatingAndReviews() {
   await upsertDataExports({ place_details: details });
 }
 
-getPlaceRatingAndReviews();
+import fs from "fs";
+import { place_details } from "./data/index.js";
+
+function export_place_details_to_csv(filepath = "data/exports/place_details.csv") {
+  const header = "place_id,user_ratings_total,rating";
+  const rows = place_details.map((p) => `${p.place_id},${p.user_ratings_total ?? ""},${p.rating ?? ""}`);
+
+  const csv_content = [header, ...rows].join("\n");
+
+  fs.writeFileSync(filepath, csv_content, "utf8");
+  console.log(`✅ CSV exported to ${filepath}`);
+}
+
+export_place_details_to_csv();

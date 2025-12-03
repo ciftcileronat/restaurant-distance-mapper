@@ -8385,6 +8385,7 @@ export const matrix_labels = [
   "Surge Coffee",
   "Mace Deli",
 ];
+
 export const place_details = [
   {
     place_id: "ChIJfZVjYSMPZ0gRlz9bNebwzsY",
